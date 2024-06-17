@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import requests
+import logging
 
 app = Flask(__name__)
+
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
 
 # List of common .well-known paths
 WELL_KNOWN_PATHS = [
@@ -45,3 +51,4 @@ def check_well_known():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
