@@ -8,6 +8,6 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 COPY . /app
 
-EXPOSE 8009
+EXPOSE 8004
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8009", "--log-level", "DEBUG", "-w", "4", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8004", "--log-level", "DEBUG", "-w", "4", "app:app"]
