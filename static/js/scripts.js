@@ -1,14 +1,23 @@
 document.getElementById('check-form').addEventListener('submit', function(event) {
     event.preventDefault();
+
     const formData = new FormData(this);
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const messagesDiv = document.getElementById('messages');
+    const resultsDiv = document.getElementById('results');
+
+    loadingSpinner.style.display = 'block';
+    messagesDiv.innerHTML = '';
+    resultsDiv.innerHTML = '';
+
     fetch('/check', {
         method: 'POST',
         body: formData
     })
         .then(response => response.json())
         .then(data => {
-            const messagesDiv = document.getElementById('messages');
-            const resultsDiv = document.getElementById('results');
+            loadingSpinner.style.display = 'none';
+
             messagesDiv.innerHTML = '';
             resultsDiv.innerHTML = '';
 
@@ -32,7 +41,8 @@ document.getElementById('check-form').addEventListener('submit', function(event)
             }
         })
         .catch(error => {
-            const messagesDiv = document.getElementById('messages');
+            loadingSpinner.style.display = 'none';
+
             messagesDiv.innerHTML = '';
             const errorElement = document.createElement('div');
             errorElement.className = 'error-message';
