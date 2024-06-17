@@ -15,6 +15,10 @@ WELL_KNOWN_PATHS = [
     '.well-known/openid-configuration',
     '.well-known/apple-app-site-association',
     '.well-known/assetlinks.json',
+    '.well-known/change-password',
+    '.well-knwon/dnt-policy.txt',
+    '.well-known/ni',
+    '.well-known/openpgpkey',
     # Add more paths as needed
 ]
 
