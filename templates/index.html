@@ -13,6 +13,15 @@
     <input type="text" name="domain" placeholder="Enter domain" required>
     <button type="submit">Check</button>
 </form>
+
+{% if error %}
+<div class="error-message">{{ error }}</div>
+{% endif %}
+
+{% if success %}
+<div class="success-message">{{ success }}</div>
+{% endif %}
+
 <div id="results"></div>
 
 <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
