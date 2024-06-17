@@ -1,5 +1,5 @@
-import requests
 from flask import Flask, render_template, request, jsonify, redirect, url_for
+import requests
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def index():
 def check_well_known():
     domain = request.form.get('domain')
     if not domain:
-        return redirect(url_for('index', error='Domain cannot be empty'))
+        return jsonify({'error': 'Domain cannot be empty'})
 
     results = {}
     for path in WELL_KNOWN_PATHS:
@@ -30,11 +30,16 @@ def check_well_known():
         try:
             response = requests.get(url)
             if response.status_code == 200:
-                results[path] = response.json()
+                try:
+                    results[path] = response.json()
+                except ValueError:
+                    results[path] = response.text
             else:
                 results[path] = 'Not Found'
-        except Exception as e:
-            results[path] = str(e)
+        except requests.exceptions.ConnectionError:
+            return jsonify({'error': f'Failed to resolve domain: {domain}'})
+        except requests.exceptions.RequestException as e:
+            return jsonify({'error': f'An error occurred: {str(e)}'})
 
     return jsonify(results)
 
