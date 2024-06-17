@@ -7,14 +7,16 @@ document.getElementById('check-form').addEventListener('submit', function(event)
     })
         .then(response => response.json())
         .then(data => {
+            const messagesDiv = document.getElementById('messages');
             const resultsDiv = document.getElementById('results');
+            messagesDiv.innerHTML = '';
             resultsDiv.innerHTML = '';
 
             if (data.error) {
                 const errorElement = document.createElement('div');
                 errorElement.className = 'error-message';
                 errorElement.textContent = data.error;
-                resultsDiv.appendChild(errorElement);
+                messagesDiv.appendChild(errorElement);
             } else {
                 for (const path in data) {
                     const result = data[path];
@@ -26,15 +28,15 @@ document.getElementById('check-form').addEventListener('submit', function(event)
                 const successElement = document.createElement('div');
                 successElement.className = 'success-message';
                 successElement.textContent = 'Successfully checked .well-known paths';
-                resultsDiv.appendChild(successElement);
+                messagesDiv.appendChild(successElement);
             }
         })
         .catch(error => {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = '';
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = '';
             const errorElement = document.createElement('div');
             errorElement.className = 'error-message';
             errorElement.textContent = `Error: ${error.message}`;
-            resultsDiv.appendChild(errorElement);
+            messagesDiv.appendChild(errorElement);
         });
 });

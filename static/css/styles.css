@@ -24,10 +24,14 @@ h1 {
     font-size: xx-large;
 }
 
-form {
+.container {
     width: 80%;
     max-width: 600px;
     text-align: center;
+}
+
+form {
+    width: 100%;
 }
 
 input[type="text"] {
@@ -55,6 +59,30 @@ button:hover {
     background-color: #0056b3;
 }
 
+#messages {
+    margin-bottom: 20px;
+}
+
+.error-message, .success-message {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: red;
+    border: 1px solid darkred;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.success-message {
+    color: green;
+    border: 1px solid darkgreen;
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
 #results {
     width: 80%;
     max-width: 800px;
@@ -70,27 +98,8 @@ pre {
     word-wrap: break-word;
 }
 
-.error-message, .success-message {
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px;
-    width: fit-content;
-}
-
-.error-message {
-    color: red;
-    border: 1px solid darkred;
-    background-color: rgba(255, 0, 0, 0.1);
-}
-
-.success-message {
-    color: green;
-    border: 1px solid darkgreen;
-    background-color: rgba(0, 255, 0, 0.1);
-}
-
 @media only screen and (max-width: 768px) {
-    form {
+    .container, #results {
         width: 90%;
     }
 

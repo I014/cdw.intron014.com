@@ -9,18 +9,22 @@
 </head>
 <body>
 <h1>Check dat .well-known</h1>
-<form id="check-form">
-    <input type="text" name="domain" placeholder="Enter domain" required>
-    <button type="submit">Check</button>
-</form>
+<div class="container">
+    <form id="check-form">
+        <input type="text" name="domain" placeholder="Enter domain" required>
+        <button type="submit">Check</button>
+    </form>
 
-{% if error %}
-<div class="error-message">{{ error }}</div>
-{% endif %}
+    <div id="messages">
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
+        {% endif %}
 
-{% if success %}
-<div class="success-message">{{ success }}</div>
-{% endif %}
+        {% if success %}
+        <div class="success-message">{{ success }}</div>
+        {% endif %}
+    </div>
+</div>
 
 <div id="results"></div>
 
