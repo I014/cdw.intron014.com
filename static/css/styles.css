@@ -169,6 +169,10 @@ pre {
         width: calc(100% - 20px);
     }
 
+    input[type="url"] {
+        width: calc(100% - 20px);
+    }
+
     pre {
         font-size: 0.9em;
     }
