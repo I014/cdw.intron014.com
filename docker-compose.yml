@@ -1,3 +1,4 @@
+name: cdw
 services:
   cdw:
     build:
