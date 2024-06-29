@@ -2,6 +2,8 @@ services:
   cdw:
     build:
       context: app
+    restart: unless-stopped
+    container_name: cdw
     command: gunicorn app:app --bind 0.0.0.0:8004 --reload
     ports:
       - "8004:8004"
