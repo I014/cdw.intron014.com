@@ -1,0 +1,6 @@
+services:
+  cdw:
+    build:
+      context: app
+    ports:
+      - "8004:8004"
